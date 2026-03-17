@@ -296,6 +296,39 @@
       display: block;
     }
 
+    @media screen and (max-width: 600px) {
+      .page {
+        margin: 0;
+        padding: 24px 18px;
+      }
+
+      header {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .contact {
+        text-align: left;
+      }
+
+      .header-info h1 {
+        font-size: 22px;
+      }
+
+      .entry-header {
+        flex-direction: column;
+      }
+
+      .entry-date {
+        color: #888;
+      }
+
+      .pdf-preview-wrap .pdf-popup,
+      .video-preview-wrap .video-popup {
+        display: none !important;
+      }
+    }
+
     @media print {
       body { background: #fff; }
       .page { box-shadow: none; margin: 0; padding: 36px 44px; }
