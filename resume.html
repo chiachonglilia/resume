@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chian Yun, Chong – Resume</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 14px;
+      color: #222;
+      background: #f4f4f4;
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 32px auto;
+      background: #fff;
+      padding: 48px 52px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+    }
+
+    /* ── HEADER ── */
+    header {
+      display: flex;
+      align-items: flex-start;
+      gap: 28px;
+      margin-bottom: 32px;
+    }
+
+    header img {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 2px solid #e0e0e0;
+    }
+
+    .header-info { flex: 1; }
+
+    .header-info h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #111;
+      line-height: 1.2;
+    }
+
+    .header-info .chinese-name {
+      font-size: 18px;
+      color: #444;
+      margin-bottom: 8px;
+    }
+
+    .header-info .edu-brief {
+      font-size: 13px;
+      color: #333;
+      line-height: 1.7;
+    }
+
+    .header-info .edu-brief strong {
+      color: #1a5fa8;
+    }
+
+    .contact {
+      text-align: right;
+      font-size: 13px;
+      color: #444;
+      line-height: 1.9;
+      flex-shrink: 0;
+    }
+
+    .contact a {
+      color: #444;
+      text-decoration: none;
+    }
+
+    .contact a:hover { text-decoration: underline; }
+
+    /* ── DIVIDER ── */
+    hr {
+      border: none;
+      border-top: 1.5px solid #e0e0e0;
+      margin: 0 0 22px 0;
+    }
+
+    /* ── SECTION ── */
+    section { margin-bottom: 26px; }
+
+    section h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a5fa8;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 14px;
+      padding-bottom: 4px;
+      border-bottom: 2px solid #1a5fa8;
+    }
+
+    /* ── JOB ENTRY ── */
+    .entry { margin-bottom: 18px; }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+
+    .entry-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .entry-date {
+      font-size: 12.5px;
+      color: #666;
+      white-space: nowrap;
+    }
+
+    ul {
+      padding-left: 20px;
+      line-height: 1.7;
+    }
+
+    ul li { margin-bottom: 3px; text-align: justify; }
+
+    /* ── SKILLS / CERTS ── */
+    .skills-grid {
+      display: block;
+      line-height: 1.8;
+      padding-left: 0;
+    }
+
+    .skills-grid li { list-style: none; padding-left: 0; text-align: left; }
+
+    .skills-grid li::before {
+      content: "•";
+      color: #222;
+      margin-right: 7px;
+      font-weight: bold;
+    }
+
+    /* ── PDF PREVIEW TOOLTIP ── */
+    .pdf-preview-wrap {
+      position: relative;
+      display: inline-block;
+    }
+
+    .pdf-preview-wrap::after {
+      content: '';
+      position: absolute;
+      height: 12px;
+      bottom: 100%;
+      left: 0;
+      right: 0;
+    }
+
+    .pdf-preview-wrap .pdf-popup {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      width: 420px;
+      height: 300px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+      overflow: hidden;
+      z-index: 999;
+    }
+
+    .pdf-preview-wrap .pdf-popup iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .pdf-preview-wrap:hover .pdf-popup {
+      display: block;
+    }
+
+    /* ── LINK DROPDOWN ── */
+    .link-dropdown-wrap {
+      position: relative;
+      display: inline;
+    }
+
+    .link-dropdown-wrap .link-dropdown {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 0;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      overflow: hidden;
+      z-index: 999;
+      white-space: nowrap;
+      min-width: 180px;
+    }
+
+    .link-dropdown-wrap:hover .link-dropdown {
+      display: block;
+    }
+
+    .link-dropdown a {
+      display: block;
+      padding: 9px 14px;
+      font-size: 13px;
+      color: #1a5fa8;
+      text-decoration: none;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .link-dropdown a:last-child { border-bottom: none; }
+
+    .link-dropdown a:hover {
+      background: #f5f8ff;
+      text-decoration: underline;
+    }
+
+    .video-preview-wrap {
+      position: relative;
+      display: inline-block;
+    }
+
+    .video-preview-wrap::after {
+      content: '';
+      position: absolute;
+      width: 10px;
+      top: 0;
+      bottom: 0;
+      left: 100%;
+    }
+
+    .video-preview-wrap .video-popup {
+      display: none;
+      position: absolute;
+      left: calc(100% + 8px);
+      top: 50%;
+      transform: translateY(-120%);
+      width: 320px;
+      height: 200px;
+      background: #000;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+      overflow: hidden;
+      z-index: 1000;
+    }
+
+    .video-preview-wrap .video-popup iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-preview-wrap:hover .video-popup {
+      display: block;
+    }
+
+    /* ── TEXT TOOLTIP ── */
+    .tooltip-wrap {
+      position: relative;
+      display: inline;
+    }
+
+    .tooltip-wrap .tooltip-box {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 0;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      padding: 10px 14px;
+      white-space: nowrap;
+      font-size: 13px;
+      color: #222;
+      line-height: 1.8;
+      z-index: 999;
+    }
+
+    .tooltip-wrap:hover .tooltip-box {
+      display: block;
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { box-shadow: none; margin: 0; padding: 36px 44px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-info">
+      <h1>Chian Yun, Chong</h1>
+      <div class="chinese-name">鍾芊蕓</div>
+      <div class="edu-brief">
+        <strong>MBA Program</strong> · National Chengchi University &nbsp;2023 – 2026<br>
+        <span style="white-space: nowrap;"><strong>B.Des., Creative Design</strong> · National Yunlin University of Science and Technology &nbsp;2016 – 2020</span>
+      </div>
+    </div>
+    <div class="contact">
+      <a href="https://www.linkedin.com/in/chian-yun-chong" target="_blank">linkedin.com/in/chian-yun-chong</a><br>
+      <a href="mailto:chongchianyun@gmail.com">chongchianyun@gmail.com</a><br>
+      0966-445-647
+    </div>
+  </header>
+
+  <hr>
+
+  <!-- SUMMARY -->
+  <section>
+    <h2>Summary</h2>
+    <p style="line-height:1.75;font-size:13.5px;color:#333;text-align:justify;">
+      MBA graduate with hands-on ESG experience across audit, supply chain sustainability, and marketing. Skilled in <strong>ESG</strong> and assisting in <strong>sustainable supply chain</strong> and <strong>GHG Protocol</strong> emissions analysis. Strong <strong>coordination and communication</strong> skills with cross-functional teams and departments.
+    </p>
+  </section>
+
+  <!-- INTERNSHIP -->
+  <section>
+    <h2>Internship</h2>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Deloitte – Audit and Assurance Intern</span>
+        <span class="entry-date">Sep 2025 – Feb 2026</span>
+      </div>
+      <ul>
+        <li>Conducting various industries sustainability standards <strong>benchmarking</strong> – tracking sustainability issues across <strong>20 plus client cases</strong> such as <strong>CSDDD, RBA, and HRDD</strong> for clients' corporate internal training programs</li>
+        <li><strong>Research and Compilation</strong> – conducted real-time research and synthesized insights on sustainability frameworks such as <strong>IFRS S2 scope 3 emissions</strong> for internal reports and client marketing materials</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">LITEON Technology – Impact Assessment Analysis Intern</span>
+        <span class="entry-date">Jun 2025 – Aug 2025</span>
+      </div>
+      <ul>
+        <li>Assisting ESG supply chain management – quantifying entire corporation procurement buying power by <strong>calculating economic impact</strong> driven by procurement spent across supply chain using IO model and EP&amp;L methodology</li>
+        <li>Quantitative Calculation – applying parameters and formulas to determine corporate's monetized ESG impact data; report writing for <span class="pdf-preview-wrap"><a href="https://www.liteon.com/upload/media/esg/06資訊中心/ESG政策及文件/報告/LITEON%20Impact%20Analysis_EN_2024-2025.pdf" target="_blank"><strong>S&amp;P Global Corporate Sustainability Assessment 2024</strong></a><div class="pdf-popup"><iframe src="LITEON_Impact_Analysis_2024.pdf#page=1&view=FitH" loading="lazy"></iframe></div></span></li>
+        <li>Assisting corporate internal questionnaire confirmation for <strong>DJBIC indices</strong> and studying new questionnaire</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">LINE Taiwan Limited – Creator Economy &amp; Marketing Operation Assistant</span>
+        <span class="entry-date">May 2024 – Dec 2024</span>
+      </div>
+      <ul>
+        <li>Online Event <span class="pdf-preview-wrap"><a href="https://brainchallenge.landpress.line.me/1227/" target="_blank"><strong>Planning &amp; Management</strong></a><div class="pdf-popup"><iframe src="https://brainchallenge.landpress.line.me/1227/" loading="lazy"></iframe></div></span> of LINE VOOM – budget, promotion and process planning</li>
+        <li>KOL / Vendor cooperation <strong>management</strong> – coordinated promotional schedules internally and externally</li>
+        <li>Social traffic <strong>tracking and analysis</strong> – using Tableau to organize data for weekly meeting reports</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- WORK EXPERIENCE -->
+  <section>
+    <h2>Work Experience – Full Time</h2>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">R&amp;D of Scuba Diving Products – JUNIOR Co., Ltd &nbsp;<span style="font-weight:400;font-size:13px;">捷你爾股份有限公司</span></span>
+        <span class="entry-date">Apr 2021 – Jun 2023</span>
+      </div>
+      <ul>
+        <li><strong>Research and development</strong> of scuba diving products using <strong>SolidWorks</strong></li>
+        <li>Conducting diving suit <strong>order management</strong> such as demand forecasting of distributors to ensure on-time fulfillment, maintained a <strong>zero delay order record</strong> throughout the period</li>
+        <li>Facilitated real-time English interpretation for <strong>20-participant workshops</strong>, achieving a 95% satisfaction rate in post survey feedback</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <h2>Skills</h2>
+    <ul class="skills-grid">
+      <li><strong>Sustainability Frameworks &amp; Regulations</strong> – GHG Protocol, IFRS S2, HRDD, TISFD</li>
+      <li><strong>Tools</strong> – Google Apps Script, Claude AI, Excel, SolidWorks</li>
+    </ul>
+  </section>
+
+  <!-- LANGUAGE & CERTIFICATES -->
+  <section>
+    <h2>Language Proficiency / Certificates</h2>
+    <ul class="skills-grid">
+      <li><strong>English</strong> – TOEIC 900/990 &nbsp;|&nbsp; <strong>Japanese</strong> – JLPT N2 &nbsp;|&nbsp; <strong>Korean</strong> – TOPIK I (Level 2)</li>
+      <li><span class="tooltip-wrap">Basic Test on Sustainable Development &nbsp;永續發展基礎能力測驗證照<div class="tooltip-box">• EU Sustainability Regulations</div></span></li>
+      <li><span class="tooltip-wrap">The Carbon Net-Zero Emission Planning Manager Certification iPAS &nbsp;淨零碳規劃管理師<div class="tooltip-box">• Life Cycle Assessment (LCA)<br>• GHG Protocol</div></span></li>
+    </ul>
+  </section>
+
+  <!-- CONTEST -->
+  <section>
+    <h2>Contest</h2>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Innovation For Wellbeing 保誠創新智造所黑客松 – Enterprise Special Award</span>
+        <span class="entry-date">Oct 2023 – Apr 2024</span>
+      </div>
+      <ul>
+        <li>Developed <span class="video-preview-wrap"><a href="https://medium.com/@chongchianyun/innovation-for-wellbeing-保誠創新製造所黑客松-ipaas-marketing-plan-fa1cd71e59ff" target="_blank"><strong>iPaaS</strong></a><div class="video-popup"><iframe data-src="https://player.vimeo.com/video/1054955695?autoplay=1&muted=1" allow="autoplay; fullscreen"></iframe></div></span> as an insurance marketing plan targeting the <strong>sandwich generation</strong></li>
+        <li>Selected as award winner out of over <strong>70 competing groups</strong> in a <strong>6-month innovation competition</strong></li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+<script>
+  document.querySelectorAll('.video-preview-wrap').forEach(wrap => {
+    const iframe = wrap.querySelector('iframe[data-src]');
+    if (!iframe) return;
+    wrap.addEventListener('mouseenter', () => {
+      if (!iframe.src) iframe.src = iframe.dataset.src;
+    });
+    wrap.addEventListener('mouseleave', () => {
+      iframe.src = '';
+    });
+  });
+</script>
+</body>
+</html>
