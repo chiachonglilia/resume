@@ -297,45 +297,68 @@
     }
 
     @media screen and (max-width: 600px) {
+      body {
+        font-size: 12px;
+        background: #fff;
+      }
+
       .page {
         margin: 0;
-        padding: 24px 18px;
+        padding: 20px 16px;
+        box-shadow: none;
       }
 
-      .header-info .edu-brief span {
-        white-space: normal;
-      }
-
-      .header-info .edu-brief {
-        font-size: 11px;
-      }
-
-      body { font-size: 12px; }
-
-      section h2 { font-size: 13px; }
-
-      .entry-title { font-size: 12px; }
-
+      /* Header */
       header {
         flex-direction: column;
-        gap: 12px;
+        gap: 10px;
+        margin-bottom: 20px;
       }
+
+      .header-info h1 { font-size: 20px; }
+
+      .header-info .chinese-name { font-size: 14px; }
+
+      .header-info .edu-brief { font-size: 11px; }
+
+      .header-info .edu-brief span { white-space: normal; }
 
       .contact {
         text-align: left;
+        font-size: 12px;
+        line-height: 1.7;
+        border-top: 1px solid #e0e0e0;
+        padding-top: 10px;
+        width: 100%;
       }
 
-      .header-info h1 {
-        font-size: 22px;
+      /* Sections */
+      section { margin-bottom: 18px; }
+
+      section h2 {
+        font-size: 12px;
+        margin-bottom: 10px;
       }
+
+      /* Entries */
+      .entry { margin-bottom: 14px; }
 
       .entry-header {
         flex-direction: column;
+        gap: 2px;
       }
 
+      .entry-title { font-size: 12px; }
+
       .entry-date {
+        font-size: 11px;
         color: #888;
       }
+
+      ul { padding-left: 16px; }
+
+      /* Overflow guard */
+      * { max-width: 100%; overflow-wrap: break-word; word-break: break-word; }
 
       .pdf-preview-wrap .pdf-popup,
       .video-preview-wrap .video-popup {
