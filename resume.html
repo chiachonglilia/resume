@@ -339,7 +339,31 @@
 
       .pdf-preview-wrap .pdf-popup,
       .video-preview-wrap .video-popup {
-        display: none !important;
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90vw;
+        height: 55vw;
+        z-index: 1001;
+      }
+
+      .pdf-preview-wrap.active .pdf-popup,
+      .video-preview-wrap.active .video-popup {
+        display: block;
+      }
+
+      .mobile-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 1000;
+      }
+
+      .mobile-overlay.active {
+        display: block;
       }
     }
 
@@ -475,16 +499,53 @@
 
 </div>
 <script>
+  const isMobile = () => window.innerWidth <= 600;
+
+  // Desktop: video autoplay on hover
   document.querySelectorAll('.video-preview-wrap').forEach(wrap => {
     const iframe = wrap.querySelector('iframe[data-src]');
     if (!iframe) return;
     wrap.addEventListener('mouseenter', () => {
-      if (!iframe.src) iframe.src = iframe.dataset.src;
+      if (!isMobile() && !iframe.src) iframe.src = iframe.dataset.src;
     });
     wrap.addEventListener('mouseleave', () => {
-      iframe.src = '';
+      if (!isMobile()) iframe.src = '';
     });
   });
+
+  // Mobile: tap to show overlay preview
+  const overlay = document.createElement('div');
+  overlay.className = 'mobile-overlay';
+  document.body.appendChild(overlay);
+
+  let activeWrap = null;
+
+  function closePreview() {
+    if (activeWrap) {
+      const iframe = activeWrap.querySelector('iframe[data-src]');
+      if (iframe) iframe.src = '';
+      activeWrap.classList.remove('active');
+      activeWrap = null;
+    }
+    overlay.classList.remove('active');
+  }
+
+  document.querySelectorAll('.pdf-preview-wrap, .video-preview-wrap').forEach(wrap => {
+    wrap.addEventListener('click', (e) => {
+      if (!isMobile()) return;
+      e.preventDefault();
+      e.stopPropagation();
+      if (activeWrap === wrap) { closePreview(); return; }
+      closePreview();
+      const iframe = wrap.querySelector('iframe[data-src]');
+      if (iframe) iframe.src = iframe.dataset.src || iframe.getAttribute('data-src') || iframe.src;
+      wrap.classList.add('active');
+      overlay.classList.add('active');
+      activeWrap = wrap;
+    });
+  });
+
+  overlay.addEventListener('click', closePreview);
 </script>
 </body>
 </html>
