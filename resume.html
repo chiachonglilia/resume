@@ -447,9 +447,9 @@
         <span class="entry-date">Jun 2025 – Aug 2025</span>
       </div>
       <ul>
-        <li>Assisting ESG supply chain management – quantifying entire corporation procurement buying power by <strong>calculating economic impact</strong> driven by procurement spent across supply chain using IO model and EP&amp;L methodology</li>
-        <li>Quantitative Calculation – applying parameters and formulas to determine corporate's monetized ESG impact data; report writing for <span class="pdf-preview-wrap"><a href="https://www.liteon.com/upload/media/esg/06資訊中心/ESG政策及文件/報告/LITEON%20Impact%20Analysis_EN_2024-2025.pdf" target="_blank"><strong>S&amp;P Global Corporate Sustainability Assessment 2024</strong></a><div class="pdf-popup"><iframe src="LITEON_Impact_Analysis_2024.pdf#page=1&view=FitH" loading="lazy"></iframe></div></span></li>
-        <li>Assisting corporate internal questionnaire confirmation for <strong>DJBIC indices</strong> and studying new questionnaire</li>
+        <li>Assisting supply chain management – quantifying buying power of procurement by <strong>calculating economic impact</strong> driven by procurement spend across supply chain using IO model and EP&amp;L methodology</li>
+        <li>Quantitative Calculation – applying parameters and formulas to determine corporate's monetized data regarding ESG impacts and report writing for <span class="pdf-preview-wrap"><a href="https://www.liteon.com/upload/media/esg/06資訊中心/ESG政策及文件/報告/LITEON%20Impact%20Analysis_EN_2024-2025.pdf" target="_blank"><strong>S&amp;P Global Corporate Sustainability Assessment 2024</strong></a><div class="pdf-popup"><iframe src="LITEON_Impact_Analysis_2024.pdf#page=1&view=FitH" loading="lazy"></iframe></div></span></li>
+        <li>Assisting corporate internal questionnaire confirmation for <strong>DJBIC indices</strong> and studying new questionnaire and assisting in sustainability awards for sustainability reporting</li>
       </ul>
     </div>
 
@@ -528,11 +528,18 @@
   document.querySelectorAll('.video-preview-wrap').forEach(wrap => {
     const iframe = wrap.querySelector('iframe[data-src]');
     if (!iframe) return;
+    let leaveTimer = null;
     wrap.addEventListener('mouseenter', () => {
-      if (!isMobile() && !iframe.src) iframe.src = iframe.dataset.src;
+      if (leaveTimer) { clearTimeout(leaveTimer); leaveTimer = null; }
+      if (!isMobile() && !iframe.getAttribute('src')) iframe.src = iframe.dataset.src;
     });
     wrap.addEventListener('mouseleave', () => {
-      if (!isMobile()) iframe.src = '';
+      if (!isMobile()) {
+        leaveTimer = setTimeout(() => {
+          iframe.removeAttribute('src');
+          leaveTimer = null;
+        }, 300);
+      }
     });
   });
 
